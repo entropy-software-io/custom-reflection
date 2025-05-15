@@ -15,8 +15,12 @@ template <typename T>
 class MyVector
 {
 public:
-    void Add(const T& value) { _v.push_back(value); }
-    void Add(T&& value) { _v.push_back(std::move(value)); }
+    int GetCount() const { return (int)_v.size(); }
+
+    inline const T& At(int index) const { return _v[index]; }
+
+    inline void Add(const T& value) { _v.push_back(value); }
+    inline void Add(T&& value) { _v.push_back(std::move(value)); }
 
 private:
     std::vector<T> _v;
@@ -32,6 +36,18 @@ struct VectorOps
 {
     template <typename T>
     using VectorType = MyNamespace::MyVector<T>;
+
+    template <typename T>
+    inline static int GetCount(const VectorType<T>& vector)
+    {
+        return vector.GetCount();
+    }
+
+    template <typename T>
+    inline static const T& At(const VectorType<T>& vector, int index)
+    {
+        return vector.At(index);
+    }
 
     template <typename T>
     inline static void Add(VectorType<T>& vector, const T& value)
