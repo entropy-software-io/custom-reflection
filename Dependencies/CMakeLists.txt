@@ -26,5 +26,15 @@ set (ENTROPY_REFLECTION_TYPEINFO_EXTRA_MODULE_LIST "MyNamespace::CustomTypeInfo"
 set(ENTROPY_REFLECTION_EXTRA_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/../Include")
 
 
+
+# Set custom containers
+
+set (ENTROPY_CORE_CUSTOM_VECTOR_INCLUDES "#include \"MyCustomVector.h\"")
+set (ENTROPY_CORE_CUSTOM_MAP_INCLUDES "#include \"MyCustomMap.h\"")
+
+# This path is added to the include paths of the core libraries in CMake
+set(ENTROPY_CORE_EXTRA_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/../Include")
+
+
 # Tell CMake to step into the dowloaded entropy-reflection repo as if we did add_subdirectory()
 FetchContent_MakeAvailable(entropy-reflection)
