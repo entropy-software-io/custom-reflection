@@ -10,8 +10,8 @@ FetchContent_Declare(
 set (ENTROPY_REFLECTION_ENABLE_RUNTIME ON)
 
 # Don't build the default examples
-set (ENTROPY_REFLECTION_BUILD_EXAMPLES OFF)
-set (ENTROPY_REFLECTION_BUILD_TESTS OFF)
+set (ENTROPY_REFLECTION_BUILD_EXAMPLES ON)
+set (ENTROPY_REFLECTION_BUILD_TESTS ON)
 
 
 # These lines below configure the addition of a custom module. They must be set before FetchContent_MakeAvailable
