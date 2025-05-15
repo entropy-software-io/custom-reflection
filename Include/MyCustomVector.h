@@ -19,6 +19,25 @@ public:
 
     inline const T& At(int index) const { return _v[index]; }
 
+    inline bool TryGetAt(int index, T* outValue) const noexcept
+    {
+        if (outValue && index >= 0 && index < GetCount())
+        {
+            *outValue = _v[index];
+            return true;
+        }
+        return false;
+    }
+    inline bool TryGetAt(int index, const T** outValue) const noexcept
+    {
+        if (outValue && index >= 0 && index < GetCount())
+        {
+            *outValue = &_v[index];
+            return true;
+        }
+        return false;
+    }
+
     inline void Add(const T& value) { _v.push_back(value); }
     inline void Add(T&& value) { _v.push_back(std::move(value)); }
 
@@ -38,7 +57,7 @@ struct VectorOps
     using VectorType = MyNamespace::MyVector<T>;
 
     template <typename T>
-    inline static int GetCount(const VectorType<T>& vector)
+    inline static int GetCount(const VectorType<T>& vector) noexcept
     {
         return vector.GetCount();
     }

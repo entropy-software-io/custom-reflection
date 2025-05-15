@@ -15,7 +15,7 @@ template <typename TKey, typename TValue>
 class MyMap
 {
 public:
-    inline int GetCount() const { return (int)_m.size(); }
+    inline int GetCount() const noexcept { return (int)_m.size(); }
 
     inline void AddUnique(const TKey& key, const TValue& value) { _m.emplace(key, value); }
     inline void AddUnique(const TKey& key, TValue&& value) { _m.emplace(key, std::move(value)); }
@@ -23,7 +23,7 @@ public:
     inline void AddOrUpdate(const TKey& key, const TValue& value) { _m[key] = value; }
     inline void AddOrUpdate(const TKey& key, TValue&& value) { _m[key] = std::move(value); }
 
-    inline bool TryGetValue(const TKey& key, TValue* outValue) const
+    inline bool TryGetValue(const TKey& key, TValue* outValue) const noexcept
     {
         auto it = _m.find(key);
         if (it == _m.end())
@@ -36,7 +36,7 @@ public:
         return true;
     }
 
-    inline bool TryGetValue(const TKey& key, const TValue** outValue) const
+    inline bool TryGetValue(const TKey& key, const TValue** outValue) const noexcept
     {
         auto it = _m.find(key);
         if (it == _m.end())
@@ -72,19 +72,19 @@ struct MapOps
     using MapType = MyNamespace::MyMap<TKey, TValue>;
 
     template <typename TKey, typename TValue>
-    inline static int GetCount(const MapType<TKey, TValue>& map)
+    inline static int GetCount(const MapType<TKey, TValue>& map) noexcept
     {
         return map.GetCount();
     }
 
     template <typename TKey, typename TValue>
-    inline static bool TryGetValue(const MapType<TKey, TValue>& map, const TKey& key, TValue* outValue)
+    inline static bool TryGetValue(const MapType<TKey, TValue>& map, const TKey& key, TValue* outValue) noexcept
     {
         return map.TryGetValue(key, outValue);
     }
 
     template <typename TKey, typename TValue>
-    inline static bool TryGetValue(const MapType<TKey, TValue>& map, const TKey& key, const TValue** outValue)
+    inline static bool TryGetValue(const MapType<TKey, TValue>& map, const TKey& key, const TValue** outValue) noexcept
     {
         return map.TryGetValue(key, outValue);
     }
