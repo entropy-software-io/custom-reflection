@@ -3,7 +3,7 @@ include(FetchContent)
 FetchContent_Declare(
         entropy-reflection
         GIT_REPOSITORY https://github.com/entropy-software-io/reflection.git
-        GIT_TAG        configure-customization
+        GIT_TAG        3a2905c7c96c8ba7363c351c9e3f0c8898a3e7df
     )
 
 # Enable Runtime Reflection
