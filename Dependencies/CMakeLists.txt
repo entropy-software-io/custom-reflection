@@ -3,13 +3,13 @@ include(FetchContent)
 FetchContent_Declare(
         entropy-reflection
         GIT_REPOSITORY https://github.com/entropy-software-io/reflection.git
-        GIT_TAG        3a2905c7c96c8ba7363c351c9e3f0c8898a3e7df
+        GIT_TAG        9ecc4d5413468f0092a1cd866cfdb49ed9fae32f
     )
 
-# Enable Runtime Reflection
+# Enable Runtime Reflection (On by default)
 set (ENTROPY_REFLECTION_ENABLE_RUNTIME ON)
 
-# Don't build the default examples
+# Build examples and tests. Normally, this wouldn't be done.
 set (ENTROPY_REFLECTION_BUILD_EXAMPLES ON)
 set (ENTROPY_REFLECTION_BUILD_TESTS ON)
 
